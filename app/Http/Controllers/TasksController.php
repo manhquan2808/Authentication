@@ -19,8 +19,10 @@ class TasksController extends Controller
      */
     public function index()
     {
+        $id = optional(Auth::user())->id;
         return TaskResource::collection(
-            Task::where('user_id', Auth::user()->id)->get()
+
+            Task::where('user_id', $id)->latest()->get()
         );
     }
 
@@ -82,8 +84,9 @@ class TasksController extends Controller
         return $this->isNotAuthorized($task) ? $this->isNotAuthorized($task) : $task->delete();
     }
 
-    private function isNotAuthorized($task){
-        if(Auth::user()->id !== $task->user_id){
+    private function isNotAuthorized($task)
+    {
+        if (Auth::user()->id !== $task->user_id) {
             return $this->error('', 'You are not authorized to make this request', 403);
         }
     }
