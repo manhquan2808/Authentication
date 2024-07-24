@@ -15,7 +15,7 @@ class EnsureUserIsSubscribed
      */
     public function handle(Request $request, Closure $next): Response
     {
-        dd('123');
+        // dd('123');
         return $next($request);
     }
 }

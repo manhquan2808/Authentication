@@ -21,6 +21,6 @@ class SendPostCreaatedNotification
      */
     public function handle(PostCreated $event): void
     {
-        dd('Post Created');
+        // dd('Post Created');
     }
 }
